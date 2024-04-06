@@ -16,6 +16,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -28,7 +29,7 @@ public class Student {
 
         @Id
         @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-        private long id;
+        private Long id;
 
         private String firstName;
 
@@ -40,17 +41,17 @@ public class Student {
         private int age;
 
         @OneToOne(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-        private Student_Id_Card studentIdCard;
+        private StudentIdCard studentIdCard;
 
         @JsonManagedReference
         @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-        private List<Book> books;
+        private List<Book> books = new ArrayList<>();
 
         @JsonManagedReference
         @ManyToMany(mappedBy = "students", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-        private List<Enrollment> enrollments;
+        private List<Enrollment> enrollments = new ArrayList<>();
 
-    public void setStudentIdCard(Student_Id_Card studentIdCard) {
+    public void setStudentIdCard(StudentIdCard studentIdCard) {
         this.studentIdCard = studentIdCard;
         if (studentIdCard.getStudent() != this) {
             studentIdCard.setStudent(this);

@@ -24,7 +24,7 @@ public class Book {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String bookName;
 

@@ -3,7 +3,7 @@ import jpa_relationships_school_example.entities.Book;
 import jpa_relationships_school_example.entities.Course;
 import jpa_relationships_school_example.entities.Enrollment;
 import jpa_relationships_school_example.entities.Student;
-import jpa_relationships_school_example.entities.Student_Id_Card;
+import jpa_relationships_school_example.entities.StudentIdCard;
 import jpa_relationships_school_example.repositories.BookRepository;
 import jpa_relationships_school_example.repositories.CourseRepository;
 import jpa_relationships_school_example.repositories.EnrollmentRepository;
@@ -48,8 +48,8 @@ public class SeedDataLoader implements CommandLineRunner {
         bookRepository.saveAll(Arrays.asList(book1, book2));
 
         // Create student ID cards
-        Student_Id_Card studentIdCard1 = Student_Id_Card.builder().cardNumber("123456").build();
-        Student_Id_Card studentIdCard2 = Student_Id_Card.builder().cardNumber("789012").build();;
+        StudentIdCard studentIdCard1 = StudentIdCard.builder().cardNumber("123456").build();
+        StudentIdCard studentIdCard2 = StudentIdCard.builder().cardNumber("789012").build();;
         studentIdCardRepository.saveAll(Arrays.asList(studentIdCard1, studentIdCard2));
 
         // Create courses

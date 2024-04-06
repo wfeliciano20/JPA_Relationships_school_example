@@ -11,6 +11,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -22,7 +23,7 @@ import java.util.List;
 public class Course {
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String name;
 
@@ -30,7 +31,20 @@ public class Course {
 
     @JsonManagedReference
     @ManyToMany(mappedBy = "courses", cascade = jakarta.persistence.CascadeType.ALL, fetch = jakarta.persistence.FetchType.LAZY)
-    private List<Enrollment> enrollments;
+    private List<Enrollment> enrollments = new ArrayList<>();
 
+    public void addEnrollment(Enrollment enrollment) {
+        this.enrollments.add(enrollment);
+        if (!enrollment.getCourses().contains(this)) {
+            enrollment.getCourses().add(this);
+        }
+    }
+
+    public void removeEnrollment(Enrollment enrollment) {
+        this.enrollments.remove(enrollment);
+        if (enrollment.getCourses().contains(this)) {
+            enrollment.getCourses().remove(this);
+        }
+    }
 
 }

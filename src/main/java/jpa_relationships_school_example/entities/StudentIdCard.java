@@ -20,11 +20,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "Student_Id_Cards")
-public class Student_Id_Card {
+public class StudentIdCard {
 
     @Id
     @GeneratedValue(strategy = jakarta.persistence.GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     @JsonBackReference
     @OneToOne
